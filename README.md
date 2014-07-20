@@ -18,4 +18,16 @@ So, how does this 'Dynamic Theme Building' thing work? Well heres the deal- And 
 
 - Using these Scripts, we can pick and choose which parts of a theme we wish to install according to different criteria. For example, an iPad 2 (Or original iPad Mini) will use a different set of files than any other iPad with a Retina display will. Likewise, the files used on an iPhone differ from those on an iPad. Expanding on this issue, there are files which are not only different across device types, but also firmware versions. 
 
-  - To give a quite specific example of a problem which 'Dynamic Theme Building' solves: 
+  - To give a quite specific example of a problem which 'Dynamic Theme Building' solves, lets take a look at themeing Preferences.app. Thanks to the work done by a certain Jato_BZ, (https://twitter.com/Jato_BZ) it is now possible to theme the icons inside the iOS Settings app by building a couple of custom archive files full of icons for use inside the settings app. Most of the icons are stored inside a file called iconCache@2x.artwork. A few of the iCloud icons are stored inside a file called dataclassIconCache@2x.artwork. But these files are different on iOS 7.1.x and iOS 7.0.x, and also different between device types. All and all, there are 4 different version of this same dataclassIconCache@2x.artwork file that your user may need. 
+  
+    - dataclassIconCache@2x.artwork (For iOS 7.1.x, Retina HD devices.)
+    - dataclassIconCache@2x.artwork (For iOS 7.0.x, Retina HD devices.)
+    - dataclassIconCache.artwork (For iOS 7.1.x, Non-Retina SD devices.)
+    - dataclassIconCache.artwork (For iOS 7.0.x, Non-Retina SD devices.)
+    
+  -Dynamic Theme Building solves this issue. All you have to do is write a postinst (To be run after your theme bundle is downloaded on device) script that checks what software version the device is running, whether the iDevice is Retina HD or Non-Retina SD, and tell it to install "file x" depending on the different outcomes.
+
+That is the basis of Dynamic Theme Building. You are limited only by the script you write. In reality, this resource is little more than an intro to bash scripts for iOS Winterboard Theme developers- Hopefully it will help you make your themes better.
+***
+
+Included with this resource is the following:
