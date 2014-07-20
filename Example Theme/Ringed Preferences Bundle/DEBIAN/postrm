@@ -1,0 +1,16 @@
+#!/bin/bash
+echo "Launching Post-Uninstallation Script for 'Ringed- Preferences Bundle.'"
+echo "Detecting if iDevice is Retina HD or Non-Retina SD."
+if [ -a /Applications/Preferences.app/iconCache@2x.artwork ]
+then
+	echo "iDevice is Retina HD."
+	echo "Restoring the backed up Icon Mask for the icons in the iOS Settings App (Preferences.app) for a Retina HD iDevice."
+	mv /System/Library/PrivateFrameworks/MobileIcons.framework/BackupTableIconMask@2x.png /System/Library/PrivateFrameworks/MobileIcons.framework/TableIconMask@2x.png
+else
+	echo "iDevice is Non-Retina SD."
+	echo "Restoring the backed up Icon Mask for the icons in the iOS Settings App (Preferences.app) for a Retina HD iDevice."
+	mv /System/Library/PrivateFrameworks/MobileIcons.framework/BackupTableIconMask.png /System/Library/PrivateFrameworks/MobileIcons.framework/TableIconMask.png
+fi
+echo "Backup Restoration Successful!"
+echo "Closing Post-Uninstallation Script."
+exit 0

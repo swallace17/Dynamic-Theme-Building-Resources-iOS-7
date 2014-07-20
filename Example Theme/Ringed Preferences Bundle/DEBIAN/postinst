@@ -1,0 +1,73 @@
+#!/bin/bash
+#Declaring Variables
+iOSfirmware=$(sw_vers -productVersion)
+#END Variables
+
+#Declaring Arrays
+HighFirmware[0]='7.1'
+HighFirmware[1]='7.1.1'
+HighFirmware[2]='7.1.2'
+#END Arrays
+
+#Declaring Functions
+function iPhone/iPadHD7.1.x
+{
+	mv /Library/Themes/Ringed-Preferences.theme/Files/DataClassIconCache/HDdcic.artwork /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.accountsui/dataclassIconCache@2x.artwork
+	mv /Library/Themes/Ringed-Preferences.theme/Files/In-App_Icons/HD /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.Preferences
+	mv /Library/Themes/Ringed-Preferences.theme/Files/IconCache/HD/HDic7.1.x.artwork /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.Preferences/iconCache@2x.artwork
+}
+function iPhone/iPadHD7.0.x
+{
+	mv /Library/Themes/Ringed-Preferences.theme/Files/iCloud_Icons_7.0.x/HD /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.castlesettings
+	mv /Library/Themes/Ringed-Preferences.theme/Files/In-App_Icons/HD /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.Preferences
+	mv /Library/Themes/Ringed-Preferences.theme/Files/IconCache/HD/HDic7.0.x.artwork /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.Preferences/iconCache@2x.artwork 
+}
+function iPadSD7.1.x
+{
+	mv /Library/Themes/Ringed-Preferences.theme/Files/DataClassIconCache/SDdcic.artwork /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.accountsui/dataclassIconCache.artwork
+	mv /Library/Themes/Ringed-Preferences.theme/Files/In-App_Icons/SD /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.Preferences
+	mv /Library/Themes/Ringed-Preferences.theme/Files/IconCache/SD/SDic7.1.x.artwork /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.Preferences/iconCache.artwork
+}
+function iPadSD7.0.x
+{
+	mv /Library/Themes/Ringed-Preferences.theme/iCloud_Icons_7.0.x/SD /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.castlesettings
+	mv /Library/Themes/Ringed-Preferences.theme/Files/In-App_Icons/SD /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.Preferences
+	mv /Library/Themes/Ringed-Preferences.theme/Files/IconCache/SD/SDic7.0.x.artwork /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.Preferences/iconCache.artwork
+}
+#END Functions
+
+#Start Script
+echo "Launching Dynamic Theme Building Script for 'Ringed- Preferences.'"
+echo "Determining necessary files for your theme package according to your iDevice, iOS firmware version, and the presence or lack of Retina Display."
+if [[ " ${HighFirmware[*]} " == *"$iOSfirmware"* ]]
+then
+	mkdir /Library/Themes/Ringed-Preferences.theme/Bundles/com.apple.accountsui
+	if [ -a /Applications/Preferences.app/iconCache@2x.artwork ]
+	then
+		echo "Your iDevice is Retina and is running $iOSfirmware. Sweet! Thats all I, your Friendly Neighborhood Dynamic Theme Building Script, needs to know."
+		echo "Now building your theme package according to your iDevcies configuration."
+		iPhone/iPadHD7.1.x
+	else
+		echo "Hello there Mr. iPad 2! You seem to be running $iOSfirmware. Finding the files you requested now."
+		echo "Now building your theme package according to your iDevices configuration."
+		iPadSD7.1.x
+	fi
+else
+	if [ -a /Applications/Preferences.app/iconCache@2x.artwork ]
+	then
+		echo "Your iDevice is Retina and running $iOSfirmware. Sweet! Thats all I, your Friendly Neighborhood Dynamic Theme Building Script, needs to know."
+		echo "Now building your theme package according to your iDevices configuration."
+		iPhone/iPadHD7.0.x
+	else
+		echo  "Hello there Mr. iPad 2! You seem to be running $iOSfirmware. Finding the files you requested now."
+		echo "Now building your theme package according to your iDevices configuration."
+		iPadSD7.0.x
+	fi
+fi
+echo "Theme Successfully Built!"
+echo "Removing Files uncessessary for your iDevices configuration."
+rm -rf /Library/Themes/Ringed-Preferences.theme/Files
+echo "Files successfully removed."
+echo "Closing Dynamic Theme Building Script for 'Ringed- Preferences.'"
+exit 0
+#END Script

@@ -1,0 +1,10 @@
+Package: com.swallace.Ringed
+Name: Ringed 
+Version: 1.0 
+Architecture: iphoneos-arm 
+Description: Ringed- A theme inspired by by the design style of OSX. The circular icons of Ringed have been individually designed with a cohesive style of gradients radiating outward from the center of each icon. Ringed aims to preserve the look and feel of the "Stock" iOS by holding to many elements and color choices already in the official icons, while prviding a unified style throughout iOS.
+Homepage: NA
+Maintainer: Samuel Wallace <R3vanchist@gmail.com>
+Author: Samuel Wallace <R3vanchist@gmail.com>
+Section: Themes
+Depends: winterboard
