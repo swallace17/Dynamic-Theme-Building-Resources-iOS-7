@@ -30,6 +30,6 @@ exit 0
 # 1) Variables: The variable "iOSfirmware" is made using the the "sw_vers" command. Adding the argument "-productVersion" means that any time the varibale iOSfirmware is used in our script, the users iOS firmware version number is substitued in its place. 
 #
 # 2) Arrarys: An array is basically just a variable with multiple values. 
-#END Notes 
+#END Notes
 
 
