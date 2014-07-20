@@ -27,7 +27,7 @@ So, how does this 'Dynamic Theme Building' thing work? Well heres the deal- And 
     
   -Dynamic Theme Building solves this issue. All you have to do is write a postinst (To be run after your theme bundle is downloaded on device) script that checks what software version the device is running, whether the iDevice is Retina HD or Non-Retina SD, and tell it to install "file x" depending on the different outcomes.
 
-That is the basis of Dynamic Theme Building. You are limited only by the script you write. In reality, this resource is little more than an intro to bash scripts for iOS Winterboard Theme developers- Hopefully it will help you make your themes better.
+That is the basis of Dynamic Theme Building. You are limited only by the scripts you write. In reality, this resource is little more than an intro to bash scripts for iOS Winterboard Theme developers- Hopefully it will help you make your themes better.
 ***
 
 Included with this resource is the following:
